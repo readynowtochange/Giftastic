@@ -17,20 +17,24 @@ var topics= ["Funny Movies", "Dancing", "It's Always Sunny In Philidelphia", "Se
 function makeButtons () {
 //make sure everything you need this funcition to do goes inside the {}, including appending the buttons to the page.
 
-}
+
 
 /*Next, the function will need to loop through all the array items.*/
 //goes inside  makebuttons{}//
 
+
 for (var i = 0; i < topics.length; i++) {
 //creating buttons and there attributes and appending to the page go inside for loop {}.//
 /*On each interation of the loop, it will create a button, tell it where it needs to go on the page, then append to dom.*/
-var newButton = document.body.createNewElement("div");  //each button will be its own div??
-newButton.attr("#", "value"); //this adds the new attributes and their values??
-document. body.appendChild("button"); //this is the part of the loop where the new button gets appended to the page.
-
+var newButton = document.createElement("button");  //each button will be its own div??   $("<div>")
+newButton.dataset.topic= topics[i]; //this adds the new attributes and their values??
+newButton.textContent = topics[i];
+document.getElementById("buttons").innerHTML += newButton ; //this is the part of the loop where the new button gets appended to the page.
+}
 
 };
+
+
 
 //Before moving on, figure this out first.///
 
