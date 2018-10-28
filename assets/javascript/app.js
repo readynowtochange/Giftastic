@@ -33,10 +33,32 @@ $("button").on("click", function () {
     }).done(function (response) {
         // console.log(response.data[0].rating);
         for (var i = 0; i < response.data.length; i++) {
-        $("#postImages").prepend("<img src='" +response.data[i].images.fixed_height_still.url+ "'>");
-        $("#postImages").prepend("<p> Rating: " +response.data[i].rating + "</p>");
+            var animateImg = response.data[i].images.fixed_height.url;
+            var stillImg = response.data[i].images.fixed_height_still.url;
+            var ratingImg = response.data[i].rating;
+
+            $("#postImages").attr("data-still", stillImg);
+            $("#postImages").attr("data-animate", animateImg);
+            $("#postImages").attr("data-state", "still");
+
+        $("#postImages").prepend("<img src='" +stillImg+ "'>");
+        $("#postImages").prepend("<p> Rating: " +ratingImg + "</p>");
+        //$("#postImages").prepend("<img src='" +animateImg+ "'>");
         };
+
+        $("img").on("click", function() {
+            var isState = $(this).attr("data-state");
+            if (isState === "still") {
+                $(this).attr("data-animate", $(this).data("animate"));
+                $(this).attr("data-state", "animate");
+            };
+            if (isState !== "still") {
+                $(this).attr("data-still", $(this).data("still"));
+                $(this).attr("data-state", "still");
+            };
+        })
 
     });
 
 });
+//See README Intial commit link for pseudocode.
